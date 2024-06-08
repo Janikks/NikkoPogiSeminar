@@ -8,7 +8,16 @@ export default function Home() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    // fetch all data here.
+   const fetchTodos = async () => {
+    const response = await fetch('api/todos');// GET request
+    if ( response.ok ){
+      const data = await response.json();
+      setTasks(data);
+    }
+   };
+   fetchTodos()
+
+
   }, []);
 
   const handleNewTask = (task) => {
